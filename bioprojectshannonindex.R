@@ -1,0 +1,7 @@
+df <- read.csv("shannonindex.csv", header=TRUE)
+attach(df)
+library(ggplot2)
+ggplot(df, aes(x=Location, y=Shannon.index, fill=Location)) + geom_boxplot() + theme_classic() + labs(x="Location", y="Shannon Index (H')")
+var.test(Shannon.index~Location, alternative=c("two.sided"), ratio=1)
+#Variance between the two groups is the same (p-value>0.05)
+t.test(Shannon.index~Location, alternative=c("greater"), paired=FALSE, var.equal=TRUE)

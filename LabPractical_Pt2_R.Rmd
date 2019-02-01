@@ -1,0 +1,74 @@
+---
+title: 'Lab Practical: Part 2'
+author: "Sammy Ko"
+output:
+  html_document:
+    df_print: paged
+---
+
+**Load libraries here** 
+```{r}
+#You can code here
+list.files()
+df <- read.csv("Hummingbird.csv", header= TRUE)
+```
+
+
+
+**Q1: Write out a hypothesis and prediction for this comparison (2 points) **
+[The average beak size of Filt's Hummingbird is larger than the average beak size of Anna's Hummingbird.
+Therefore, Filt's Hummingbird is a different species than Anna's Hummingbird.]
+
+
+**Q2: Load the Hummingbird data into R using the file name "Hummingbird" and view the first 6 lines using the head() function (2 points)**
+```{r}
+#You can code here
+head(df)
+
+```
+
+***Use the R dataset "trees" for Q3-5***
+
+**Q3: Evaluate the relationshp between height and diamter of tree using an appropriate statistical test (2 points).**
+
+```{r}
+#You can code here! 
+attach(trees)
+View(trees)
+cor.test(Height,Girth)
+```
+
+**Q4: Create a publication quality figure of these data. (2 points) **
+```{r}
+#You can code here! 
+library(ggplot2)
+ggplot(trees, aes(Height,Girth)) + geom_point() + labs(x="Height ", y="Girth") + geom_smooth(method = "lm")+ theme_classic()
+```
+
+**Q5: Write a properly worded results statement. (2 points)**
+[There is a significant positive correlation between the height and the girth of the trees(r=0.5192801).]
+
+
+***Use the R dataset "PlantGrowth" for Q6-8***
+
+**Q6: Evaluate the relationship between treatment and plant yield using an appropriate statistical test (2 points)**
+
+```{r}
+#You can code here
+attach(PlantGrowth)
+View(PlantGrowth)
+anova <- aov(weight~group)
+summary(anova)
+```
+
+**Q7: Create a publication quality figure of these data (2 points)**
+
+```{r}
+#You can code here
+ggplot(PlantGrowth, aes(group,weight)) + geom_boxplot() + labs(x="Treatment groups", y="Weight") + theme_classic()
+```
+
+**Q8: Write a properly worded results statement. (2 points)**
+[We reject the null hypothesis, and there is a significant relationship between treatment conditions and the weight of plants (p-value=0.0159).]
+
+
